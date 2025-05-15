@@ -119,7 +119,9 @@ voting_project/
 
 ### For Administrators
 
-1. Log in with your administrator credentials at `/admin/`
+1. Log in with your administrator credentials at `/admin/` 
+{amanya as the name
+ password "amanya@256"}
 2. Create and manage elections
 3. Monitor voting activity
 4. View and export results
