@@ -1,0 +1,111 @@
+{% extends 'electronic_voting/base.html' %}
+
+{% block title %}Elections | E-Voting Platform{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="text-center mb-4">Elections</h1>
+        <div class="text-center mb-5">
+            <p class="lead">Welcome to the E-Voting Platform. Browse through available elections and cast your vote securely.</p>
+        </div>
+    </div>
+</div>
+
+{% if ongoing_elections %}
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="mb-4"><i class="fas fa-hourglass-half me-2"></i>Ongoing Elections</h2>
+        <div class="row">
+            {% for election in ongoing_elections %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body position-relative">
+                        <span class="election-status status-ongoing">Ongoing</span>
+                        <h5 class="card-title mb-3">{{ election.title }}</h5>
+                        <p class="card-text text-muted mb-3">{{ election.description|truncatewords:20 }}</p>
+                        <p class="small text-muted">
+                            <i class="far fa-calendar-alt me-1"></i> Ends: {{ election.end_date|date:"F d, Y - H:i" }}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'election_detail' election.id %}" class="btn btn-primary w-100">
+                            <i class="fas fa-vote-yea me-1"></i> Vote Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if upcoming_elections %}
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="mb-4"><i class="fas fa-calendar-plus me-2"></i>Upcoming Elections</h2>
+        <div class="row">
+            {% for election in upcoming_elections %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body position-relative">
+                        <span class="election-status status-upcoming">Upcoming</span>
+                        <h5 class="card-title mb-3">{{ election.title }}</h5>
+                        <p class="card-text text-muted mb-3">{{ election.description|truncatewords:20 }}</p>
+                        <p class="small text-muted">
+                            <i class="far fa-calendar-alt me-1"></i> Starts: {{ election.start_date|date:"F d, Y - H:i" }}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'election_detail' election.id %}" class="btn btn-secondary w-100">
+                            <i class="fas fa-info-circle me-1"></i> View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if past_elections %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4"><i class="fas fa-history me-2"></i>Past Elections</h2>
+        <div class="row">
+            {% for election in past_elections %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body position-relative">
+                        <span class="election-status status-completed">Completed</span>
+                        <h5 class="card-title mb-3">{{ election.title }}</h5>
+                        <p class="card-text text-muted mb-3">{{ election.description|truncatewords:20 }}</p>
+                        <p class="small text-muted">
+                            <i class="far fa-calendar-check me-1"></i> Ended: {{ election.end_date|date:"F d, Y - H:i" }}
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'election_results' election.id %}" class="btn btn-info w-100">
+                            <i class="fas fa-chart-pie me-1"></i> View Results
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if not ongoing_elections and not upcoming_elections and not past_elections %}
+<div class="row">
+    <div class="col-12 text-center py-5">
+        <i class="fas fa-ballot-check fa-4x mb-3 text-muted"></i>
+        <h3>No elections are available at the moment.</h3>
+        <p>Please check back later for upcoming elections.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

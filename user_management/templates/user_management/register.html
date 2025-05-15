@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register - Electronic Voting System{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card glass-card">
+                <div class="card-header text-white">
+                    <h3 class="mb-0">Register</h3>
+                </div>
+                <div class="card-body">
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <p>There were errors in your form submission. Please correct them.</p>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                            <p class="text-danger">{{ field.label }}: {{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="id_username">Username</label>
+                            {{ form.username.errors }}
+                            <input type="text" name="username" id="id_username" class="form-control" required autofocus>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="id_email">Email</label>
+                            {{ form.email.errors }}
+                            <input type="email" name="email" id="id_email" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="id_first_name">First Name</label>
+                            {{ form.first_name.errors }}
+                            <input type="text" name="first_name" id="id_first_name" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="id_last_name">Last Name</label>
+                            {{ form.last_name.errors }}
+                            <input type="text" name="last_name" id="id_last_name" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="id_password1">Password</label>
+                            {{ form.password1.errors }}
+                            <input type="password" name="password1" id="id_password1" class="form-control" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="id_password2">Confirm Password</label>
+                            {{ form.password2.errors }}
+                            <input type="password" name="password2" id="id_password2" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                    
+                    <hr>
+                    
+                    <div class="text-center">
+                        <p>Already have an account? <a href="{% url 'login' %}">Log in here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

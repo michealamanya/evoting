@@ -1,0 +1,219 @@
+{% extends "electronic_voting/base.html" %}
+{% load static %}
+
+{% block title %}FAQ - Electronic Voting System{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .faq-section {
+        padding: 2rem 0;
+    }
+    
+    .glass-card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 31, 63, 0.1);
+        transition: all 0.4s ease;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .accordion-item {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .accordion-button {
+        background: rgba(255, 255, 255, 0.1);
+        color: #333;
+        font-weight: 600;
+        box-shadow: none;
+    }
+    
+    .accordion-button:not(.collapsed) {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+    }
+    
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(59, 130, 246, 0.5);
+    }
+    
+    .accordion-body {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+    }
+    
+    .category-title {
+        border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: #3b82f6;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-5">Frequently Asked Questions</h1>
+        </div>
+    </div>
+    
+    <div class="row faq-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h3 class="category-title"><i class="fas fa-question-circle me-2"></i>General Questions</h3>
+                
+                <div class="accordion" id="accordionGeneral">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                What is an electronic voting system?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionGeneral">
+                            <div class="accordion-body">
+                                An electronic voting system is a digital platform that allows eligible voters to cast their ballots online. Our system provides a secure, convenient alternative to traditional paper-based voting methods, enabling participation from any location with internet access.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Is electronic voting as secure as traditional methods?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGeneral">
+                            <div class="accordion-body">
+                                Yes, our electronic voting system employs multiple layers of security, including end-to-end encryption, identity verification, and audit trails. In many ways, electronic voting can be more secure than traditional methods as it eliminates human errors in vote counting and prevents certain types of ballot tampering.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                What types of elections can be conducted on this platform?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGeneral">
+                            <div class="accordion-body">
+                                Our platform supports various types of elections, including general elections, local government elections, organizational elections, university student body elections, and corporate board elections. The system is flexible and can be configured for different voting methods, such as first-past-the-post, ranked-choice, or proportional representation.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row faq-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h3 class="category-title"><i class="fas fa-user-shield me-2"></i>Account & Security</h3>
+                
+                <div class="accordion" id="accordionAccount">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                How do I register for an account?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionAccount">
+                            <div class="accordion-body">
+                                To register, click on the "Register" button in the top navigation bar. You'll need to provide your full name, email address, and create a secure password. Depending on the election, you may also need to provide additional identity verification information.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                How is my personal information protected?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionAccount">
+                            <div class="accordion-body">
+                                Your personal information is encrypted and stored securely in compliance with data protection regulations. We implement strict access controls and follow industry best practices for data security. Your voting choices are stored separately from your personal information to maintain ballot secrecy.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                What should I do if I forget my password?
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionAccount">
+                            <div class="accordion-body">
+                                If you forget your password, click on the "Forgot Password" link on the login page. You'll be prompted to enter your email address, and we'll send you instructions for resetting your password. For security reasons, password reset links expire after 24 hours.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row faq-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h3 class="category-title"><i class="fas fa-vote-yea me-2"></i>Voting Process</h3>
+                
+                <div class="accordion" id="accordionVoting">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSeven">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                How do I cast my vote?
+                            </button>
+                        </h2>
+                        <div id="collapseSeven" class="accordion-collapse collapse show" aria-labelledby="headingSeven" data-bs-parent="#accordionVoting">
+                            <div class="accordion-body">
+                                After logging in, navigate to the "Elections" page where you'll see a list of active elections you're eligible to participate in. Click on "Vote Now" for your desired election, make your selections on the ballot, review your choices, and then submit your vote by clicking "Cast Ballot."
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingEight">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                Can I change my vote after submitting it?
+                            </button>
+                        </h2>
+                        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionVoting">
+                            <div class="accordion-body">
+                                No, once you've submitted your vote, it cannot be changed. This is consistent with traditional voting methods and ensures the integrity of the election. Please review your selections carefully before final submission.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingNine">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                How can I verify my vote was counted?
+                            </button>
+                        </h2>
+                        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionVoting">
+                            <div class="accordion-body">
+                                After casting your vote, you'll receive a unique receipt code. You can use this code on the "Verify Vote" page to confirm your vote was included in the final tally. This verification system allows you to ensure your participation without revealing your specific voting choices.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

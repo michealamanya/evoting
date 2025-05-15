@@ -1,0 +1,129 @@
+{% extends "electronic_voting/base.html" %}
+{% load static %}
+
+{% block title %}About Us - Electronic Voting System{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .about-section {
+        padding: 3rem 0;
+    }
+    
+    .glass-card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 31, 63, 0.1);
+        transition: all 0.4s ease;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .team-member {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-5">About Us</h1>
+        </div>
+    </div>
+    
+    <div class="row about-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h2><i class="fas fa-vote-yea me-2"></i>Our Mission</h2>
+                <p class="lead">To provide a secure, transparent, and accessible electronic voting platform that empowers citizens to participate in democratic processes.</p>
+                <p>At Electronic Voting System, we believe in the power of technology to enhance democratic participation and make voting more accessible to all citizens. Our platform is designed with security, transparency, and user-friendliness in mind.</p>
+                <p>We are committed to maintaining the highest standards of election integrity while making the voting process more convenient for everyone.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row about-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h2><i class="fas fa-shield-alt me-2"></i>Our Values</h2>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-lock fa-3x mb-3 text-primary"></i>
+                            <h4>Security</h4>
+                            <p>We employ advanced encryption and security measures to protect your vote and personal information.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-eye fa-3x mb-3 text-primary"></i>
+                            <h4>Transparency</h4>
+                            <p>Our system is designed to be transparent, allowing for verification without compromising ballot secrecy.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-universal-access fa-3x mb-3 text-primary"></i>
+                            <h4>Accessibility</h4>
+                            <p>We strive to make voting accessible to all eligible voters, regardless of location or physical ability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row about-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h2><i class="fas fa-users me-2"></i>Our Team</h2>
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="team-member">
+                            <img src="{% static 'images/placeholder-person.jpg' %}" alt="Team Member">
+                            <h4>Micheal Amanya</h4>
+                            <p class="text-muted">Founder & CEO</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="team-member">
+                            <img src="{% static 'images/placeholder-person.jpg' %}" alt="Team Member">
+                            <h4>kainamura darius</h4>
+                            <p class="text-muted">Chief Technology Officer</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="team-member">
+                            <img src="{% static 'images/placeholder-person.jpg' %}" alt="Team Member">
+                            <h4>Maria Garcia</h4>
+                            <p class="text-muted">Security Specialist</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="team-member">
+                            <img src="{% static 'images/placeholder-person.jpg' %}" alt="Team Member">
+                            <h4>marvellous asingwire</h4>
+                            <p class="text-muted">UX Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

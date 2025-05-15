@@ -1,0 +1,154 @@
+{% extends "electronic_voting/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us - Electronic Voting System{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .contact-section {
+        padding: 2rem 0;
+    }
+    
+    .glass-card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 31, 63, 0.1);
+        transition: all 0.4s ease;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(59, 130, 246, 0.5);
+        box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+    }
+    
+    .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .map-container {
+        height: 300px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-5">Contact Us</h1>
+        </div>
+    </div>
+    
+    <div class="row contact-section">
+        <div class="col-md-6">
+            <div class="glass-card">
+                <h3 class="mb-4"><i class="fas fa-paper-plane me-2"></i>Send Us a Message</h3>
+                
+                <form class="contact-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    
+                    <input type="text" class="form-control" placeholder="Subject">
+                    
+                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="glass-card">
+                <h3 class="mb-4"><i class="fas fa-info-circle me-2"></i>Contact Information</h3>
+                
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h5>Our Location</h5>
+                        <p>mile 3 ruharo<br>mbarara district, mbarara City<br>uganda</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h5>Phone</h5>
+                        <p>+256-740-470-116<br>+256- 773-403-968</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>Email</h5>
+                        <p>amanyamicheal770@gmail.com.com<br>support@evotingsystem.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h5>Office Hours</h5>
+                        <p>Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday & Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-card">
+                <h3 class="mb-3"><i class="fas fa-map me-2"></i>Find Us</h3>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2163792353136!2d-73.98784482373307!3d40.75780633540204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1623345789012!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

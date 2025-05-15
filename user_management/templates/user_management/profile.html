@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Profile - Electronic Voting System{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card glass-card">
+                <div class="card-header text-white">
+                    <h3 class="mb-0">Profile</h3>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <div class="alert alert-success">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-4 text-center">
+                            {% if user.profile.profile_picture %}
+                                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle profile-image mb-3">
+                            {% else %}
+                                <img src="{% static 'images/default-profile.png' %}" alt="Default Profile" class="img-fluid rounded-circle profile-image mb-3">
+                            {% endif %}
+                            <h5>{{ user.get_full_name }}</h5>
+                            <p class="text-muted">@{{ user.username }}</p>
+                            <a href="{% url 'activity_log' %}" class="btn btn-info btn-sm">View Activity Log</a>
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h4 class="mb-3">Account Information</h4>
+                                <div class="form-group mb-3">
+                                    <label for="{{ user_form.username.id_for_label }}">Username</label>
+                                    {{ user_form.username }}
+                                    {{ user_form.username.errors }}
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="{{ user_form.email.id_for_label }}">Email</label>
+                                    {{ user_form.email }}
+                                    {{ user_form.email.errors }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="{{ user_form.first_name.id_for_label }}">First Name</label>
+                                            {{ user_form.first_name }}
+                                            {{ user_form.first_name.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="{{ user_form.last_name.id_for_label }}">Last Name</label>
+                                            {{ user_form.last_name }}
+                                            {{ user_form.last_name.errors }}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="mt-4 mb-3">Profile Information</h4>
+                                <div class="form-group mb-3">
+                                    <label for="{{ profile_form.profile_picture.id_for_label }}">Profile Picture</label>
+                                    {{ profile_form.profile_picture }}
+                                    {{ profile_form.profile_picture.errors }}
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="{{ profile_form.bio.id_for_label }}">Bio</label>
+                                    {{ profile_form.bio }}
+                                    {{ profile_form.bio.errors }}
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="{{ profile_form.date_of_birth.id_for_label }}">Date of Birth</label>
+                                    {{ profile_form.date_of_birth }}
+                                    {{ profile_form.date_of_birth.errors }}
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="{{ profile_form.phone_number.id_for_label }}">Phone Number</label>
+                                    {{ profile_form.phone_number }}
+                                    {{ profile_form.phone_number.errors }}
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="{{ profile_form.address.id_for_label }}">Address</label>
+                                    {{ profile_form.address }}
+                                    {{ profile_form.address.errors }}
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

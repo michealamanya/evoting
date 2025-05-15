@@ -1,0 +1,335 @@
+{% extends "electronic_voting/base.html" %}
+{% load static %}
+
+{% block title %}Blog - Electronic Voting System{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .blog-section {
+        padding: 2rem 0;
+    }
+    
+    .glass-card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 31, 63, 0.1);
+        transition: all 0.4s ease;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .blog-card {
+        height: 100%;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .blog-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .blog-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+    
+    .blog-category {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(59, 130, 246, 0.8);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    
+    .blog-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+    
+    .search-box {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+    
+    .search-box input {
+        width: 100%;
+        padding: 0.8rem 1rem 0.8rem 3rem;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+    }
+    
+    .search-box i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+    }
+    
+    .category-badge {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .category-badge:hover {
+        background: rgba(59, 130, 246, 0.2);
+        cursor: pointer;
+    }
+    
+    .category-badge.active {
+        background: rgba(59, 130, 246, 0.8);
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-5">Blog</h1>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Blog Posts -->
+            <div class="row blog-section" id="blog-posts-container">
+                <div class="col-md-6 mb-4 blog-item" data-category="security">
+                    <div class="glass-card blog-card">
+                        <div class="blog-image" style="background-image: url('{% static 'images/blog-placeholder.jpg' %}');"></div>
+                        <span class="blog-category">Security</span>
+                        <h3>The Future of E-Voting Security</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar me-1"></i> May 10, 2025</span>
+                            <span><i class="far fa-user me-1"></i> Admin</span>
+                        </div>
+                        <p>Exploring the latest advancements in electronic voting security, including blockchain technology and biometric verification systems.</p>
+                        <a href="{% url 'blog_post' 1 %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4 blog-item" data-category="technology">
+                    <div class="glass-card blog-card">
+                        <div class="blog-image" style="background-image: url('{% static 'images/blog-placeholder.jpg' %}');"></div>
+                        <span class="blog-category">Technology</span>
+                        <h3>How Blockchain is Revolutionizing Voting</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar me-1"></i> May 5, 2025</span>
+                            <span><i class="far fa-user me-1"></i> Tech Team</span>
+                        </div>
+                        <p>An in-depth look at how blockchain technology is providing unprecedented transparency and security in modern voting systems.</p>
+                        <a href="{% url 'blog_post' 2 %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4 blog-item" data-category="democracy">
+                    <div class="glass-card blog-card">
+                        <div class="blog-image" style="background-image: url('{% static 'images/blog-placeholder.jpg' %}');"></div>
+                        <span class="blog-category">Democracy</span>
+                        <h3>Increasing Voter Participation Through Technology</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar me-1"></i> April 28, 2025</span>
+                            <span><i class="far fa-user me-1"></i> Policy Team</span>
+                        </div>
+                        <p>How digital voting platforms are helping to overcome barriers to participation and increase voter turnout across demographics.</p>
+                        <a href="{% url 'blog_post' 3 %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4 blog-item" data-category="case-study">
+                    <div class="glass-card blog-card">
+                        <div class="blog-image" style="background-image: url('{% static 'images/blog-placeholder.jpg' %}');"></div>
+                        <span class="blog-category">Case Study</span>
+                        <h3>Success Stories: University Elections</h3>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar me-1"></i> April 15, 2025</span>
+                            <span><i class="far fa-user me-1"></i> Research Team</span>
+                        </div>
+                        <p>Examining how universities have successfully implemented e-voting systems for student government elections.</p>
+                        <a href="{% url 'blog_post' 4 %}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Blog pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled" id="prev-page">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="{% url 'blog' %}?page=1">1</a></li>
+                    <li class="page-item"><a class="page-link" href="{% url 'blog' %}?page=2">2</a></li>
+                    <li class="page-item"><a class="page-link" href="{% url 'blog' %}?page=3">3</a></li>
+                    <li class="page-item" id="next-page">
+                        <a class="page-link" href="{% url 'blog' %}?page=2">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="col-md-4">
+            <!-- Sidebar -->
+            <div class="glass-card">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="blog-search" placeholder="Search articles..." class="form-control">
+                </div>
+                
+                <h4 class="mb-3">Categories</h4>
+                <div class="mb-4">
+                    <span class="category-badge active" data-category="all">All</span>
+                    <span class="category-badge" data-category="security">Security</span>
+                    <span class="category-badge" data-category="technology">Technology</span>
+                    <span class="category-badge" data-category="democracy">Democracy</span>
+                    <span class="category-badge" data-category="case-study">Case Study</span>
+                    <span class="category-badge" data-category="research">Research</span>
+                </div>
+                
+                <h4 class="mb-3">Recent Posts</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'blog_post' 1 %}">The Future of E-Voting Security</a></li>
+                    <li class="mb-2"><a href="{% url 'blog_post' 2 %}">How Blockchain is Revolutionizing Voting</a></li>
+                    <li class="mb-2"><a href="{% url 'blog_post' 3 %}">Increasing Voter Participation Through Technology</a></li>
+                    <li class="mb-2"><a href="{% url 'blog_post' 4 %}">Success Stories: University Elections</a></li>
+                    <li class="mb-2"><a href="{% url 'blog_post' 5 %}">Ensuring Accessibility in Digital Voting</a></li>
+                </ul>
+                
+                <h4 class="mb-3">Subscribe</h4>
+                <p>Stay updated with our latest articles and news.</p>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Your email">
+                    <button class="btn btn-primary" type="button" id="subscribe-btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Category filtering
+        const categoryButtons = document.querySelectorAll('.category-badge');
+        const blogItems = document.querySelectorAll('.blog-item');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                
+                // Show/hide blog items based on category
+                blogItems.forEach(item => {
+                    if (category === 'all') {
+                        item.style.display = 'block';
+                    } else {
+                        if (item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('blog-search');
+        
+        searchInput.addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            blogItems.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const content = item.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Subscription form
+        const subscribeBtn = document.getElementById('subscribe-btn');
+        
+        subscribeBtn.addEventListener('click', function() {
+            const emailInput = this.previousElementSibling;
+            const email = emailInput.value.trim();
+            
+            if (email && isValidEmail(email)) {
+                alert('Thank you for subscribing! You will receive our latest updates.');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+        
+        function isValidEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+        
+        // Pagination functionality
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page')) || 1;
+        
+        // Update pagination active state
+        document.querySelectorAll('.pagination .page-item').forEach(item => {
+            const pageLink = item.querySelector('.page-link');
+            if (pageLink && pageLink.textContent == currentPage) {
+                item.classList.add('active');
+            } else if (item.classList.contains('active') && pageLink && pageLink.textContent != currentPage) {
+                item.classList.remove('active');
+            }
+        });
+        
+        // Update prev/next buttons
+        const prevPageBtn = document.getElementById('prev-page');
+        const nextPageBtn = document.getElementById('next-page');
+        
+        if (currentPage > 1) {
+            prevPageBtn.classList.remove('disabled');
+            prevPageBtn.querySelector('.page-link').setAttribute('href', `{% url 'blog' %}?page=${currentPage - 1}`);
+        } else {
+            prevPageBtn.classList.add('disabled');
+        }
+        
+        if (currentPage < 3) { // Assuming 3 is the total number of pages
+            nextPageBtn.classList.remove('disabled');
+            nextPageBtn.querySelector('.page-link').setAttribute('href', `{% url 'blog' %}?page=${currentPage + 1}`);
+        } else {
+            nextPageBtn.classList.add('disabled');
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}

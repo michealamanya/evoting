@@ -1,0 +1,136 @@
+{% extends 'electronic_voting/base.html' %}
+
+{% block title %}Results | {{ election.title }} | E-Voting Platform{% endblock %}
+
+{% block extra_css %}
+<style>
+    .progress {
+        height: 25px;
+    }
+    .winner-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: gold;
+        color: #333;
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .result-card {
+        position: relative;
+        transition: transform 0.2s;
+    }
+    .result-card:hover {
+        transform: translateY(-5px);
+    }
+    .vote-percentage {
+        position: absolute;
+        right: 10px;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'election_list' %}">Elections</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'election_detail' election.id %}">{{ election.title }}</a></li>
+                <li class="breadcrumb-item active">Results</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="mb-3">Election Results: {{ election.title }}</h1>
+        <p class="lead">{{ election.description }}</p>
+    </div>
+</div>
+
+{% for position, candidates in results.items %}
+<div class="card mb-4">
+    <div class="card-header bg-light">
+        <h3 class="mb-0">{{ position.title }}</h3>
+        <p class="text-muted mb-0">{{ position.description }}</p>
+    </div>
+    <div class="card-body">
+        {% if candidates %}
+            {% with total_votes=candidates|sum_votes %}
+                {% for candidate_data in candidates %}
+                    {% with candidate=candidate_data.candidate votes=candidate_data.votes %}
+                        <div class="result-card mb-4 {% if forloop.first %}border-left border-success border-3{% endif %}">
+                            {% if forloop.first %}
+                            <div class="winner-badge">
+                                <i class="fas fa-trophy me-1"></i> Winner
+                            </div>
+                            {% endif %}
+                            
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="me-3">
+                                    {% if candidate.photo %}
+                                    <img src="{{ candidate.photo.url }}" class="rounded-circle" width="60" height="60" alt="{{ candidate.user.get_full_name }}">
+                                    {% else %}
+                                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-user fa-2x text-secondary"></i>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">{{ candidate.user.get_full_name }}</h5>
+                                    <p class="mb-0 text-muted">{{ votes }} vote{{ votes|pluralize }}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="progress position-relative">
+                                {% with percentage=votes|calculate_percentage:total_votes %}
+                                <div class="progress-bar {% if forloop.first %}bg-success{% else %}bg-primary{% endif %}" 
+                                     role="progressbar" 
+                                     style="width: {{ percentage }}%;" 
+                                     aria-valuenow="{{ votes }}" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="{{ total_votes }}">
+                                </div>
+                                <span class="vote-percentage">{{ percentage }}%</span>
+                                {% endwith %}
+                            </div>
+                        </div>
+                    {% endwith %}
+                {% endfor %}
+                <div class="text-muted mt-3">
+                    <i class="fas fa-info-circle me-1"></i> Total votes for this position: {{ total_votes }}
+                </div>
+            {% endwith %}
+        {% else %}
+            <div class="alert alert-info">
+                No votes have been cast for this position yet.
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% empty %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle me-2"></i> No positions have been defined for this election.
+</div>
+{% endfor %}
+
+<div class="row mt-4">
+    <div class="col-12 text-center">
+        <a href="{% url 'election_list' %}" class="btn btn-primary">
+            <i class="fas fa-arrow-left me-1"></i> Back to Elections
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // You can add chart.js code here to create visual charts for the results
+</script>
+{% endblock %}

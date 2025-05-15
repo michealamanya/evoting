@@ -1,0 +1,162 @@
+{% extends "electronic_voting/base.html" %}
+{% load static %}
+
+{% block title %}How Voting Works - Electronic Voting System{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .process-section {
+        padding: 2rem 0;
+    }
+    
+    .glass-card {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 31, 63, 0.1);
+        transition: all 0.4s ease;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .step-card {
+        margin-bottom: 30px;
+        position: relative;
+    }
+    
+    .step-number {
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #4f46e5, #3b82f6);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .security-feature {
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-left: 4px solid #3b82f6;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mb-5">How E-Voting Works</h1>
+        </div>
+    </div>
+    
+    <div class="row process-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h2 class="mb-4"><i class="fas fa-info-circle me-2"></i>Understanding Electronic Voting</h2>
+                <p class="lead">Electronic voting is a modern approach to democratic participation that leverages technology to make voting more accessible and efficient.</p>
+                <p>Our platform streamlines the traditional voting process while maintaining or enhancing the security and integrity of elections. Below, you'll find a step-by-step guide to how our system works, along with information about the security measures we employ to protect your vote.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row process-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h2 class="mb-4"><i class="fas fa-tasks me-2"></i>The Voting Process</h2>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="glass-card step-card">
+                            <div class="step-number">1</div>
+                            <h4>Registration</h4>
+                            <p>Create an account with your personal information. Your identity is verified against voter registration databases to ensure eligibility.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="glass-card step-card">
+                            <div class="step-number">2</div>
+                            <h4>Authentication</h4>
+                            <p>Log in securely using your credentials. Multi-factor authentication ensures that only you can access your voting privileges.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="glass-card step-card">
+                            <div class="step-number">3</div>
+                            <h4>Ballot Access</h4>
+                            <p>View the elections you're eligible to participate in. Each ballot is customized based on your registration information.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="glass-card step-card">
+                            <div class="step-number">4</div>
+                            <h4>Casting Your Vote</h4>
+                            <p>Select your preferred candidates or options. Review your choices before final submission.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="glass-card step-card">
+                            <div class="step-number">5</div>
+                            <h4>Confirmation</h4>
+                            <p>Receive a confirmation receipt with a unique identifier. This allows you to verify your vote was counted without revealing your specific choices.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="glass-card step-card">
+                            <div class="step-number">6</div>
+                            <h4>Results</h4>
+                            <p>Once the election closes, results are tallied and published. The system prevents any modifications to votes after submission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row process-section">
+        <div class="col-md-12">
+            <div class="glass-card">
+                <h2 class="mb-4"><i class="fas fa-shield-alt me-2"></i>Security Measures</h2>
+                
+                <div class="security-feature">
+                    <h4><i class="fas fa-lock me-2"></i>End-to-End Encryption</h4>
+                    <p>All data transmitted between your device and our servers is encrypted, ensuring that your vote cannot be intercepted or altered.</p>
+                </div>
+                
+                <div class="security-feature">
+                    <h4><i class="fas fa-user-secret me-2"></i>Voter Anonymity</h4>
+                    <p>Our system separates your identity from your voting choices, ensuring ballot secrecy while maintaining the integrity of the election.</p>
+                </div>
+                
+                <div class="security-feature">
+                    <h4><i class="fas fa-history me-2"></i>Audit Trails</h4>
+                    <p>All actions are logged (without compromising ballot secrecy) to allow for post-election auditing and verification.</p>
+                </div>
+                
+                <div class="security-feature">
+                    <h4><i class="fas fa-server me-2"></i>Redundant Systems</h4>
+                    <p>Multiple backup systems ensure that no votes are lost and that the system remains available throughout the election period.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
